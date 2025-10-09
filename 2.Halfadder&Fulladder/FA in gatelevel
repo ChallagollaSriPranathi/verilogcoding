@@ -1,0 +1,12 @@
+//Fulladder in Gate level modelling
+module full_adder(
+    input A, B, Cin,
+    output S, C
+);
+    wire w1, w2, w3;
+    xor(w1, A, B);
+    xor(S, w1, Cin);
+    and(w2, A, B);
+    and(w3, w1, Cin);
+    or(C, w2, w3);
+endmodule
