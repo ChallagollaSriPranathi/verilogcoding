@@ -1,0 +1,11 @@
+//full adder in behavioral modelling
+module Full_adder(S, C, A, B, Cin);
+    input A, B, Cin;
+    output reg S, C;
+
+    always @(A or B or Cin)
+    begin
+        S = A ^ B ^ Cin;
+        C = (A & B) | (B & Cin) | (A & Cin);
+    end
+endmodule
