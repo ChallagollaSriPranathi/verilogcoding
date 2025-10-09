@@ -1,8 +1,0 @@
-//description of half subtractor in data flow modelling
-module half_sub(
-    input A, B,
-    output Diff, Borrow
-);
-    assign Diff=(A^B);
-    assign Borrow=(~A)&B;
-endmodule
