@@ -1,0 +1,18 @@
+module testbench();
+reg i0,i1,sel;
+wire out;
+mux uut(i0,i1,sel,out);
+initial
+begin
+  $monitor("%0dns:i0=%b,i1=%b,sel=%b,out=%b",$time,i0,i1,sel,out);
+  #10 i0=0;i1=0;sel=0;
+  #10 i0=0;i1=1;sel=0;
+  #10 i0=1;i1=0;sel=0;
+  #10 i0=1;i1=1;sel=0;
+  #10 i0=0;i1=0;sel=1;
+  #10 i0=0;i1=1;sel=1;
+  #10 i0=1;i1=0;sel=1;
+  #10 i0=1;i1=1;sel=1;
+  #100 $finish;
+end
+endmodule
