@@ -1,0 +1,18 @@
+//Gate level description of full adder using two half adders
+//Description of half adder
+module halfadder(S, C, A, B);
+input A, B; 
+output S, C;
+xor (S, A, B);
+and (C, A, B);
+endmodule
+
+//Description of full adder
+module fulladder(S, C, A, B, Cin);
+  input A, B, Cin;
+  output S, C;
+wire s1, d1, d2;
+halfadder HA1(s1, d1, A, B);
+halfadder HA2(S, d2, s1, Cin);
+or (C, d2, d1);
+endmodule
