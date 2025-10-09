@@ -1,0 +1,8 @@
+//full adder in Data flow modelling
+module Full_adder(
+    input A, B, Cin,
+    output S, C
+);
+    assign S=A^B^Cin;
+    assign C=(A&B) | (B&Cin) | (A&Cin);
+endmodule
