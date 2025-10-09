@@ -1,0 +1,12 @@
+module mux (
+  input i0,i1 sel,
+  output reg out
+);
+  always @(i0 or i1 or out)
+  begin
+    if (sel)
+     out=i1;
+    else
+      out=i0;
+  end
+endmodule
