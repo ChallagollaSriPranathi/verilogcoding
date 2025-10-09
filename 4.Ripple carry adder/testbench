@@ -1,0 +1,30 @@
+module test_bench1;
+  reg [3:0] x, y;
+  reg cin;
+  wire [3:0] sum;
+  wire cout;
+  ripple_carry_adder uut (x, y, cin, sum, cout);
+  initial begin
+    // Test case 1: x = 3, y = 5, cin = 0
+    x = 4'b0011; y = 4'b0101; cin = 1'b0;
+    #10 $display("%0dns: x=%b, y=%b, cin=%b, sum=%b, cout=%b", $time, x, y, cin, sum, cout);
+
+    // Test case 2: x = 7, y = 8, cin = 1
+    x = 4'b0111; y = 4'b1000; cin = 1'b1;
+    #10 $display("%0dns: x=%b, y=%b, cin=%b, sum=%b, cout=%b", $time, x, y, cin, sum, cout);
+
+    // Test case 3: x = 15, y = 15, cin = 1
+    x = 4'b1111; y = 4'b1111; cin = 1'b1;
+    #10 $display("%0dns: x=%b, y=%b, cin=%b, sum=%b, cout=%b", $time, x, y, cin, sum, cout);
+
+    // Test case 4: x = 1, y = 2, cin = 0
+    x = 4'b0001; y = 4'b0010; cin = 1'b0;
+    #10 $display("%0dns: x=%b, y=%b, cin=%b, sum=%b, cout=%b", $time, x, y, cin, sum, cout);
+
+    // Test case 5: x = 9, y = 6, cin = 1
+    x = 4'b1001; y = 4'b0110; cin = 1'b1;
+    #10 $display("%0dns: x=%b, y=%b, cin=%b, sum=%b, cout=%b", $time, x, y, cin, sum, cout);
+
+    #100 $finish;
+  end
+endmodule
