@@ -1,0 +1,12 @@
+module mux(input i0,i1,i2,i3,s1,s2,
+            output reg out);
+always @(i0 or i1 or i2 or i3 or s1 or s2)
+begin
+case({s1,s2})
+2'b00:out=i0;
+2'b01:out=i1;
+2'b02:out=i2;
+2'b03:out=i3;
+endcase
+end
+endmodule
