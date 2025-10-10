@@ -1,0 +1,32 @@
+// 1x2 Demux Module
+module demux_1x2(input I, input sel, output y0, output y1);
+  assign y0 = I & ~sel;
+  assign y1 = I & sel;
+endmodule
+
+// 1x16 Demux Module
+module demux_1x16(input I, input [3:0] s, output [15:0] y);
+wire w1, w2, w3, w4, w5, w6, w7, w8;
+wire w9, w10, w11, w12;
+wire w13, w14, w15;
+// Final output stage
+  demux_1x2 d1(w1, s[0], y[0], y[1]);
+  demux_1x2 d2(w2, s[0], y[2], y[3]);
+  demux_1x2 d3(w3, s[0], y[4], y[5]);
+  demux_1x2 d4(w4, s[0], y[6], y[7]);
+  demux_1x2 d5(w5, s[0], y[8], y[9]);
+  demux_1x2 d6(w6, s[0], y[10], y[11]);
+  demux_1x2 d7(w7, s[0], y[12], y[13]);
+  demux_1x2 d8(w8, s[0], y[14], y[15]);
+// Intermediate stages
+  demux_1x2 d9(w9, s[1], w1, w2);
+  demux_1x2 d10(w10, s[1], w3, w4);
+  demux_1x2 d11(w11, s[1], w5, w6);
+  demux_1x2 d12(w12, s[1], w7, w8);
+
+  demux_1x2 d13(w13, s[2], w9, w10);
+  demux_1x2 d14(w14, s[2], w11, w12);
+
+  demux_1x2 d15(w15, s[3], w13, w14);
+  demux_1x2 d16(I, s[3], w15, ); 
+endmodule
