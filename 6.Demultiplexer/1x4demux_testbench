@@ -1,0 +1,21 @@
+module testbench();
+reg I, s1, s0;
+wire y0, y1, y2, y3;
+demux_1x4 uut (I, s1, s0, y0, y1, y2, y3);
+
+initial
+begin
+  $monitor ("0dns: I=%b, s1=%b, s0=%b, y0=%b, y1=%b, y2=%b, y3=%b",
+    $time, I, s1, s0, y0, y1, y2, y3);
+
+  #10 I=1;s1=0;s0=0;
+  #10 I=1;s1=0;s0=0;
+  #10 I=1;s1=1;s0=0;
+  #10 I=1;s1=1;s0=1;
+  #10 I=0;s1=0;s0=0;
+  #10 I=0;s1=0;s0=1;
+  #10 I=0;s1=1;s0=0;
+  #10 I=0;s1=1;s0=1;
+  #100 $finish;
+end
+endmodule
