@@ -1,0 +1,8 @@
+// 10to4 encoder using gate level
+module encoder_10x4(input [9:0] y,
+                    output [3:0] A);
+or(A[3], y[9], y[8]);
+or(A[2], y[7], y[6], y[5], y[4]);
+or(A[1], y[7], y[6], y[3], y[2]);
+or(A[0], y[9], y[7], y[5], y[3], y[1]);
+endmodule
