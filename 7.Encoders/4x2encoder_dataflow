@@ -1,0 +1,5 @@
+// 4to2 encoder using data flow
+module encoder_4x2(input [3:0] y, output [1:0] A);
+  assign A[1]=y[3]|y[2];
+  assign A[0]=y[3]|y[1];
+endmodule
