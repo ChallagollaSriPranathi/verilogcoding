@@ -1,0 +1,16 @@
+// 1x8 demux in data flow modelling
+module demux_1x8 (
+    input I,
+    input s2,s1,s0,
+    output y0,y1,y2,y3,y4,y5,y6,y7
+);
+
+assign y0 = ({s2,s1,s0} == 3'b000) ? I : 1'b0;
+assign y1 = ({s2,s1,s0} == 3'b001) ? I : 1'b0;
+assign y2 = ({s2,s1,s0} == 3'b010) ? I : 1'b0;
+assign y3 = ({s2,s1,s0} == 3'b011) ? I : 1'b0;
+assign y4 = ({s2,s1,s0} == 3'b100) ? I : 1'b0;
+assign y5 = ({s2,s1,s0} == 3'b101) ? I : 1'b0;
+assign y6 = ({s2,s1,s0} == 3'b110) ? I : 1'b0;
+assign y7 = ({s2,s1,s0} == 3'b111) ? I : 1'b0;
+endmodule
