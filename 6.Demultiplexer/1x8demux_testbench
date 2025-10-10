@@ -1,0 +1,31 @@
+module testbench();
+    reg I, s2, s1, s0;
+    wire y0, y1, y2, y3, y4, y5, y6, y7;
+    demux_1x8 uut (I, s2, s1, s0, y0, y1, y2, y3, y4, y5, y6, y7);
+    initial
+    begin
+        $monitor ("@%0dns I=%b, s2=%b, s1=%b, s0=%b, y0=%b, y1=%b, y2=%b, y3=%b, y4=%b, y5=%b, y6=%b, y7=%b",
+            $time, I, s1, s0, y0, y1, y2, y3, y4, y5, y6, y7);
+
+        // Test with I=1
+        #10 I=1; s2=0; s1=0; s0=0; // Selects y0
+        #10 I=1; s2=0; s1=0; s0=1; // Selects y1
+        #10 I=1; s2=0; s1=1; s0=0; // Selects y2
+        #10 I=1; s2=0; s1=1; s0=1; // Selects y3
+        #10 I=1; s2=1; s1=0; s0=0; // Selects y4
+        #10 I=1; s2=1; s1=0; s0=1; // Selects y5
+        #10 I=1; s2=1; s1=1; s0=0; // Selects y6
+        #10 I=1; s2=1; s1=1; s0=1; // Selects y7
+
+        // Test with I=0 
+        #10 I=0; s2=0; s1=0; s0=0;
+        #10 I=0; s2=0; s1=0; s0=1;
+        #10 I=0; s2=0; s1=1; s0=0;
+        #10 I=0; s2=0; s1=1; s0=1;
+        #10 I=0; s2=1; s1=0; s0=0;
+        #10 I=0; s2=1; s1=0; s0=1;
+        #10 I=0; s2=1; s1=1; s0=0;
+        #10 I=0; s2=1; s1=1; s0=1;
+        #200 $finish;
+    end
+endmodule
