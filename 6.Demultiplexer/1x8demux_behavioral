@@ -1,0 +1,21 @@
+// 1x8 demux in behavioral modelling
+module demux_1x8 (
+  input I,
+  input [2:0] sel,
+  output reg [7:0] y
+);
+
+always @(*) begin
+  y = 8'b00000000;
+  case (sel)
+    3'b000: y[0] = I;
+    3'b001: y[1] = I;
+    3'b010: y[2] = I;
+    3'b011: y[3] = I;
+    3'b100: y[4] = I;
+    3'b101: y[5] = I;
+    3'b110: y[6] = I;
+    3'b111: y[7] = I;
+  endcase
+end
+endmodule
