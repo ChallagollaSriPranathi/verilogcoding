@@ -1,0 +1,22 @@
+module testbench();
+  reg I;
+  reg [3:0] s;
+  wire [15:0] y;
+ demux_1x16 uut(I, s, y);
+integer i;
+initial 
+begin
+$dumpfile("demux_1x16.vcd");
+$dumpvars(0, testbench);
+$monitor("%0dns: I=%b, s=%b, y=%b", $time, I, s, y);
+I = 1'b1;
+    for (i = 0; i < 16; i = i + 1) begin
+      s = i[3:0];
+      #10;
+    end
+I = 1'b0;
+    s = 4'b0000;
+    #10;
+$finish;
+end
+endmodule
