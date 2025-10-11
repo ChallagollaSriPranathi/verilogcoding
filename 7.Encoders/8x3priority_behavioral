@@ -1,0 +1,24 @@
+// 8t03 priority encoder in behavioral
+module encoder_8x3 (
+    input [7:0] y,
+    input  en,
+    output reg [2:0] A);
+always @(y or en) begin
+    if (en == 1'b1) begin
+        casez (y)
+            8'b1???????: A = 3'b111;
+            8'b01??????: A = 3'b110;
+            8'b001?????: A = 3'b101;
+            8'b0001????: A = 3'b100;
+            8'b00001???: A = 3'b011;
+            8'b000001??: A = 3'b010;
+            8'b0000001?: A = 3'b001;
+            8'b00000001: A = 3'b000;
+            default:     A = 3'b000; 
+        endcase
+    end 
+    else begin
+        A = 3'b000;
+    end
+end
+endmodule
