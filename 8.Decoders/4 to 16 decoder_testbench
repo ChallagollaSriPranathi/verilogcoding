@@ -1,0 +1,32 @@
+// 4 to 16 decoder test benchS
+module testbench();
+reg [3:0]A;
+reg E;
+wire [15:0]y;
+decoder uut(A,E,y);
+initial
+begin
+$monitor("%0dns:A=%b,E=%b,y=%b",
+                $time,A,E,y);
+E=1;
+#10 A=4'b0000;
+#10 A=4'b0001;
+#10 A=4'b0010;
+#10 A=4'b0011;
+#10 A=4'b0100;
+#10 A=4'b0101;
+#10 A=4'b0110;
+#10 A=4'b0111;
+#10 A=4'b1000;
+#10 A=4'b1001;
+#10 A=4'b1010;
+#10 A=4'b1011;
+#10 A=4'b1100;
+#10 A=4'b1101;
+#10 A=4'b1110;
+#10 A=4'b1111;
+
+#10 E=0;A=4'b1111;
+$finish;
+end
+endmodule
