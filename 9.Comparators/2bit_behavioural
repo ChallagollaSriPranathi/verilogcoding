@@ -1,0 +1,15 @@
+//2 bit magnitude comparator in behavioral modellling
+module comparator(input [1:0]A,B,output reg L,E,G);
+always@(*)
+begin
+if (A==B)begin
+L=0;E=1;G=0;
+end
+else if (A>B) begin
+L=0;E=0;G=1;
+end
+else  begin
+L=1;E=0;G=0;
+end
+end
+endmodule
