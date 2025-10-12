@@ -1,0 +1,10 @@
+// 2 to 4 decoder in gate level  modelling
+module decoder(input A,B,E,output y0,y1,y2,y3);
+wire w1,w2;
+not(w1,A);
+not(w2,B);
+and(y0,E,w1,w2);
+and(y1,E,w1,B);
+and(y2,E,A,w2);
+and(y3,E,A,B);
+endmodule
