@@ -1,0 +1,9 @@
+//1 bit magnitude comparator in gate level modellling
+module comparator(input A,B,output L,E,G);
+wire w1,w2;
+not(w1,A);
+not(w2,B);
+xnor(E,A,B);
+and(L,w1,B);
+and(G,A,w2);
+endmodule
