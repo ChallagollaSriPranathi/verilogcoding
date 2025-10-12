@@ -1,5 +1,5 @@
 // 3 to 8 decoder in data flow modelling
-module decoder(input A,B,C,E,output [0:7]y);
+module decoder(input A,B,C,E,output [7:0]y);
 assign y[0]=E&(~A)&(~B)&(~C);
 assign y[1]=E&(~A)&(~B)&(C);
 assign y[2]=E&(~A)&(B)&(~C);
