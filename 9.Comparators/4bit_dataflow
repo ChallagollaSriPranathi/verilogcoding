@@ -1,0 +1,6 @@
+//4 bit magnitude comparator in dataflow modellling
+module comparator(input [3:0]A,B,output L,E,G);
+assign G=(A>B);
+assign E=(A==B);
+assign L=(A<B);
+endmodule
