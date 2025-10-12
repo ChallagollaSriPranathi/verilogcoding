@@ -1,4 +1,4 @@
-module decoder(input [3:0]A,E,output reg [15:0]y);
+module decoder(input [3:0]A, input E,output reg [15:0]y);
 always @(*) begin
 if (E==1'b1) begin
       case (A)
