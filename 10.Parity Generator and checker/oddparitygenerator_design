@@ -1,0 +1,7 @@
+//odd parity generator in behavioral modeling
+module parity(input [3:0] A,output reg oddparity);
+always@(*)
+begin
+oddparity=~(A[0]^A[1]^A[2]^A[3]);
+end
+endmodule
