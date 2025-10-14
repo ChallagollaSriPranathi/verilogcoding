@@ -1,0 +1,7 @@
+//odd parity checker in behavioural modeling
+module parity(input [3:0] A,input p,output reg Cp);
+always @(*)
+begin
+Cp=~(A[0]^A[1]^A[2]^A[3]^p);
+end
+endmodule
