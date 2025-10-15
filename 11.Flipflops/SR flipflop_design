@@ -1,0 +1,5 @@
+module flipflop(input s,r,input clk,input Q,
+            output Qn,output Q_not);         
+assign Qn=(Q&(~r))|(s&(~r));
+assign Q_not=~Qn;
+endmodule
