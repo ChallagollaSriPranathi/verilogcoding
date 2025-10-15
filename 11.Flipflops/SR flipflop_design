@@ -3,3 +3,18 @@ module flipflop(input s,r,input clk,input Q,
 assign Qn=(Q&(~r))|(s&(~r));
 assign Q_not=~Qn;
 endmodule
+
+/SR filpflop design  
+module flipflop(input s,input r,input clk,
+    output reg Q,output Q_not);
+
+always @(posedge clk) begin
+    case ({s, r})
+        2'b00:Q<=Q;       
+        2'b01:Q<=1'b0;     
+        2'b10:Q<=1'b1;       
+        2'b11:Q<=1'bx;  
+    endcase
+end
+assign Q_not = ~Q;
+endmodule
