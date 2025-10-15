@@ -29,3 +29,27 @@ clk=1;Q=1;
 $finish;
 end                     
 endmodule
+
+
+
+module testbench();
+reg s,r;
+reg clk;
+wire Q;
+wire Q_not;
+flipflop uut(s,r,clk,Q,Q_not);
+initial begin
+ clk = 0;
+ forever #5 clk = ~clk; 
+end
+initial 
+begin
+$monitor("%0dns:s=%b,r=%b,clk=%b,Q=%b,Q_not=%b",
+                        $time,s,r,clk,Q,Q_not);
+#10 s=0;r=0;
+#10 s=0;r=1;
+#10 s=1;r=0;
+#10 s=1;r=1;
+$finish;
+end                     
+endmodule
