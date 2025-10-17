@@ -1,37 +1,4 @@
-module testbench();
-reg s,r;
-reg clk;
-reg Q;
-wire Qn;
-wire Q_not;
-flipflop uut(s,r,clk,Q,Qn,Q_not);
-initial 
-begin
-$monitor("%0dns:s=%b,r=%b,clk=%b,Q=%b,Qn=%b,Q_not=%b",
-                        $time,s,r,clk,Q,Qn,Q_not);
-clk=0;
-#10 s=0;r=0;
-#10 s=0;r=1;
-#10 s=1;r=0;
-#10 s=1;r=1;
-
-clk=1;Q=0;
-#10 s=0;r=0;
-#10 s=0;r=1;
-#10 s=1;r=0;
-#10 s=1;r=1;
-
-clk=1;Q=1;
-#10 s=0;r=0;
-#10 s=0;r=1;
-#10 s=1;r=0;
-#10 s=1;r=1;
-$finish;
-end                     
-endmodule
-
-
-
+//sr flipflop test bench
 module testbench();
 reg s,r;
 reg clk;
@@ -50,6 +17,6 @@ $monitor("%0dns:s=%b,r=%b,clk=%b,Q=%b,Q_not=%b",
 #10 s=0;r=1;
 #10 s=1;r=0;
 #10 s=1;r=1;
-$finish;
+#10 $finish;
 end                     
 endmodule
