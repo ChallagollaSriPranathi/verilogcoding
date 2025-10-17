@@ -1,0 +1,18 @@
+//JK filpflop design  
+module flipflop(input J,input K,input clk,
+    output reg Q,output Q_not);
+parameter hold=2'b00,
+          reset=2'b01,
+          set=2'b10,
+          toggle=2'b11;
+assign Q_not = ~Q;      
+always @(posedge clk)
+begin
+    case ({J, K})
+        hold:Q<=Q;       
+        reset:Q<=0;     
+        set:Q<=1;       
+        toggle:Q<=~Q;  
+    endcase
+end
+endmodule
