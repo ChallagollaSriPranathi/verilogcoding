@@ -1,0 +1,22 @@
+//T flipflop test bench
+module testbench();
+reg T;
+reg clk;
+wire Q;
+wire Q_not;
+flipflop uut(T,clk,Q,Q_not);
+initial begin
+ clk=0;
+ forever #5 clk = ~clk; 
+end
+initial 
+begin
+$monitor("%0dns:T=%b,clk=%b,Q=%b,Q_not=%b",
+                       $time,T,clk,Q,Q_not);
+#2 T=0;
+#10 T=1;
+#10 T=0;
+#10 T=1;
+#20 $finish;
+end                     
+endmodule
