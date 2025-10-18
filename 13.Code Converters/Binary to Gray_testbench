@@ -1,0 +1,14 @@
+// Binary to Gray code converter testbench
+module testbench();
+reg [3:0]B;
+wire [3:0]G;
+Binary_to_Gray uut(B,G);
+initial
+begin
+repeat(16) begin
+B=$random();
+#10;
+$monitor("%0dns:B=%b,G=%b",$time,B,G);
+end
+end
+endmodule
