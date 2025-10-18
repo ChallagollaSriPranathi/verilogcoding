@@ -1,0 +1,22 @@
+module testbench();
+    reg clk,reset,D;
+    wire Q,Q_not;
+flipflopT_to_D uut(clk,reset,D,Q,Q_not);
+initial 
+begin
+ clk=0;
+ forever #5 clk=~clk;
+end
+initial 
+begin
+$monitor("%0dns: clk=%b, reset=%b, D=%b, Q=%b, Q_not=%b",
+                 $time, clk, reset, D, Q, Q_not);
+reset=1;D=0;
+#10 reset=0;
+#10 D=0;
+#10 D=1;
+#10 D=0;
+#10 D=1;
+#10 $finish;
+end
+endmodule
