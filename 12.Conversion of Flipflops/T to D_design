@@ -1,0 +1,19 @@
+//conversion of T flipflop to D flipflop
+module flipflopT_to_D(input clk,input reset,input D,
+                    output reg Q,output Q_not);
+ reg T;
+ always @(*)
+ begin
+    T=D^Q;
+ end
+ always @(posedge clk or posedge reset)
+ begin
+    if(reset)
+        Q<=0;      
+    else if(T) 
+        Q<=~Q;    
+    else 
+        Q<=Q;     
+ end   
+ assign Q_not=~Q;               
+endmodule
