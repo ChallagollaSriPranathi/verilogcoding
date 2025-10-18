@@ -1,0 +1,21 @@
+module testbench();
+    reg clk,reset,D;
+    wire Q,Q_not;
+flipflopSR_to_D uut(clk, reset, D, Q, Q_not);
+initial 
+begin
+ clk=0;
+ forever #5 clk=~clk;
+end
+initial 
+begin
+reset=1;D=0;
+#12 reset=0;
+// Test D = 0
+#10 D = 0;
+#10 D = 1;
+#10 D = 0;
+#10 D = 1;
+#10 $finish;
+end
+endmodule
