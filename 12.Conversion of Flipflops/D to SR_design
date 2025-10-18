@@ -1,0 +1,17 @@
+//conversion of D flipflop to SR flipflop
+module flipflopD_to_SR(input clk,input reset,input S,R,
+                    output reg Q,output Q_not);
+ reg D;
+ always @(*)
+ begin
+    D=S|(~R&Q);
+ end
+ always @(posedge clk or posedge reset)
+ begin
+    if(reset)
+        Q<=0;    
+    else 
+        Q<=D;    
+ end   
+ assign Q_not=~Q;               
+endmodule
