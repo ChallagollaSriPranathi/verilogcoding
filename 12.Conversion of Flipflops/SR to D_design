@@ -1,0 +1,18 @@
+//conversion of SR flipflop to D flipflop
+//data flow modelling
+module flipflopSR_to_D(input clk,input reset,input D,
+                    output reg Q,output Q_not);
+ wire S,R;
+ assign S=D;
+ assign R=~D;
+ always @(posedge clk or posedge reset)
+ begin
+    if(reset)
+        Q<=0;
+    else if(S&~R)
+        Q<=1;
+    else if(~S&R)
+        Q<=0;
+ end   
+ assign Q_not=~Q;               
+endmodule
