@@ -1,0 +1,13 @@
+//Excess 3 to BCD code converter testbench
+module testbench();
+reg [3:0]X;
+wire [3:0]B;
+Excess3_to_BCD uut(X,B);
+initial
+begin
+$monitor("%0dns:X=%b,B=%b",$time,X,B);
+for (X=4'd3;X<=4'd12;X=X+1)
+      #5;
+#5 $finish;
+end
+endmodule
