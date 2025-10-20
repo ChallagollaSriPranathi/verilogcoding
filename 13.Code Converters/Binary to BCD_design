@@ -1,0 +1,9 @@
+//Binary to BCD code converter
+//data flow modelling
+module Binary_to_BCD(input [4:1]A, output [8:1]B);
+  wire [3:0]bin=A;
+  wire [3:0]tens,units;
+  assign tens=(bin>9)?4'b0001:4'b0000;
+  assign units=(bin>9)?bin-4'd10:bin;
+  assign B={tens, units}; // B[8:5] = tens, B[4:1] = units
+endmodule
