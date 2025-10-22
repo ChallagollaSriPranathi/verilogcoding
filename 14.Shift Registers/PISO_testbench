@@ -1,0 +1,24 @@
+//PISO testbench
+module testbench();
+reg clk,load;
+reg [3:0] parallel_in;
+wire serial_out;
+PISO uut(clk,load,parallel_in,serial_out);
+initial begin
+    clk=0;
+    forever #5 clk=~clk;
+end
+initial begin
+$monitor("%0dns:clk=%b,load=%b,parallel_in=%b,serial_out=%b",
+                $time,clk,load,parallel_in,serial_out);
+                
+load = 1;
+parallel_in = 4'b1011;
+#10;
+
+load = 0;
+parallel_in = 4'b0000;
+#40;
+$finish;
+end
+endmodule
