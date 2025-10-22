@@ -3,7 +3,7 @@ module testbench();
 reg clk,reset;
 reg [3:0] parallel_in;
 wire [3:0] parallel_out;
-SIPO uut(clk,reset,parallel_in,parallel_out);
+PIPO uut(clk,reset,parallel_in,parallel_out);
 initial begin
     clk=0;
     forever #5 clk=~clk;
