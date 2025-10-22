@@ -1,0 +1,20 @@
+//PISO shift register in structural modelling
+module DFF(input clk,input D,output reg Q);
+always@(posedge clk)
+    Q<=D;
+endmodule
+
+module PISO(input clk,load,input [3:0] parallel_in,output serial_out);
+wire [3:0] q;//outputs
+wire [3:0] d;//inputs
+assign d[3]=load?parallel_in[3]:q[2];
+assign d[2]=load?parallel_in[2]:q[1];
+assign d[1]=load?parallel_in[1]:q[0];
+assign d[0]=load?parallel_in[0]:1'b0;
+
+DFF ff0(clk,d[0],q[0]);
+DFF ff1(clk,d[1],q[1]);
+DFF ff2(clk,d[2],q[2]);
+DFF ff3(clk,d[3],q[3]);
+assign serial_out=q[3];
+endmodule
