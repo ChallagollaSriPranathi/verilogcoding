@@ -2,7 +2,7 @@
 module testbench();
 reg clk,reset;
 reg Din;
-wire Dout;
+wire [3:0] Dout;
 SIPO uut(clk,reset,Din,Dout);
 initial begin
     clk=0;
