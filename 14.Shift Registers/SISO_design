@@ -1,0 +1,21 @@
+//SISO shift register in structural modelling
+//D flipflop module
+module DFF(input clk,reset,input D,output reg Q);
+always@(posedge clk or posedge reset)
+begin
+if(reset)
+    Q<=0;
+else
+    Q<=D;
+end
+endmodule
+
+module SISO(input clk,reset,input Din,output Dout);
+wire Q3,Q2,Q1,Q0;
+DFF FF3(clk,reset,Din,Q3);
+DFF FF2(clk,reset,Q3,Q2);
+DFF FF1(clk,reset,Q2,Q1);
+DFF FF0(clk,reset,Q1,Q0);
+assign Dout=Q0;
+endmodule
+
