@@ -1,0 +1,25 @@
+//SIPO testbench
+module testbench();
+reg clk,reset;
+reg Din;
+wire Dout;
+SIPO uut(clk,reset,Din,Dout);
+initial begin
+    clk=0;
+    forever #5 clk=~clk;
+end
+initial begin
+$monitor("%0dns:clk=%b,reset=%b,Din=%b,Dout=%b",
+                $time,clk,reset,Din,Dout);
+reset=1;
+Din=0;
+#10;
+reset=0;                 
+Din=1;#10;
+Din=0;#10;
+Din=1;#10;
+Din=1;#10;
+Din=0;#40;
+$finish;
+end
+endmodule
