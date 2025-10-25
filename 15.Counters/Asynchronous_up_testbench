@@ -1,0 +1,20 @@
+//test bench for asynchronous up counter
+module testbench();
+reg [1:0]J,K;
+reg clk,reset;
+wire [1:0]Q,Q_not;
+upcounter uut(J,K,clk,reset,Q,Q_not);
+initial begin
+    clk=0;
+    forever #5 clk=~clk;
+end
+initial begin
+$monitor("%0dns:J=%b,K=%b,clk=%b,reset=%b,Q=%b,Q_not=%b",
+                $time,J,K,clk,reset,Q,Q_not);
+ J=2'b11; K=2'b11;  
+reset=0;#10;
+reset=1; 
+#100;
+$finish;
+end               
+endmodule
