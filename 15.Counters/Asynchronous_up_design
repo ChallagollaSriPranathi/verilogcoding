@@ -1,0 +1,26 @@
+//2bit Asynchronous up counter(negative edge triggered)
+module JKFF(input J,input K,input clk,input reset,
+                output reg Q,output Q_not);
+assign Q_not=~Q;
+always @(negedge clk or negedge reset) begin
+ if(!reset)
+     Q<=0;
+  else begin
+    case({J,K})
+     2'b00:Q<=Q;
+     2'b01:Q<=0;
+     2'b10:Q<=1;
+     2'b11:Q<=~Q;
+    endcase
+ end
+end
+endmodule
+module upcounter(input [1:0]J,input[1:0]K,input clk,
+                input reset,output [1:0]Q,
+                output [1:0]Q_not);
+wire Q0,Q1,Q0_not,Q1_not;
+JKFF ff1(J[0],K[0],clk,reset,Q0,Q0_not);
+JKFF ff2(J[1],K[1],Q0,reset,Q1,Q1_not);  
+assign Q={Q1, Q0};
+assign Q_not={Q1_not, Q0_not};
+endmodule
