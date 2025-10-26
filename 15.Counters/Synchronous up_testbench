@@ -1,0 +1,22 @@
+//synchronous up counter test bench
+module testbench();
+reg clk,reset;
+wire [3:0] Q;
+synchronousup uut(clk,reset,Q);
+initial begin
+    clk=0;
+    forever #5 clk=~clk;
+end 
+initial begin
+$monitor("%0dns:clk=%b,reset=%b,Q=%b",
+                $time,clk,reset,Q);
+clk=0;reset=1;
+#10;
+reset=0;
+#150;
+reset=1;#10;
+reset=0;
+#100;
+$finish;
+end                
+endmodule
