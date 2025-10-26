@@ -1,0 +1,17 @@
+module testbench();
+reg clk,reset;
+wire [3:0] Q,Q_not;
+ringcounter uut(clk,reset,Q,Q_not);
+initial begin
+    clk=0;
+    forever #5 clk=~clk;
+end 
+initial begin
+$monitor("%0dns:clk=%b,reset=%b,Q=%b,Q_not=%b",
+                $time,clk,reset,Q,Q_not);
+clk=0;reset=1;
+#10;
+reset=0;
+#150 $finish;
+end                
+endmodule
