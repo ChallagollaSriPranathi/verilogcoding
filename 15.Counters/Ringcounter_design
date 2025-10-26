@@ -1,0 +1,23 @@
+//ring counter using D flipflop
+module DFF(input D,input clk,input reset,input init,
+            output reg Q,output Q_not);
+always @(posedge clk or posedge reset)
+begin 
+    if(reset)
+        Q<=init;
+    else  
+        Q<=D;
+end
+assign Q_not=~Q;
+endmodule
+module ringcounter(input clk,input reset,
+                output [3:0]Q,output [3:0]Q_not);
+ wire Q0,Q1,Q2,Q3;    
+ wire Q0_not,Q1_not,Q2_not,Q3_not;           
+DFF ff1(Q3,clk,reset,1'b1,Q0,Q0_not);
+DFF ff2(Q0,clk,reset,1'b0,Q1,Q1_not);
+DFF ff3(Q1,clk,reset,1'b0,Q2,Q2_not);
+DFF ff4(Q2,clk,reset,1'b0,Q3,Q3_not);              
+assign Q={Q3,Q2,Q1,Q0};
+assign Q_not={Q3_not,Q2_not,Q1_not,Q0_not};
+endmodule
