@@ -1,0 +1,12 @@
+//4 bit synchronous up/down counter
+module synchronousup_down( input clk,reset,M,output reg[3:0]Q);
+always@(posedge clk)
+begin
+if(reset)
+       Q<=4'b0000;
+else if(M)
+       Q<=Q+1'b1;
+else
+       Q<=Q-1'b1;        
+end
+endmodule       
