@@ -1,0 +1,37 @@
+//moore 1001 overlapping sequence detector
+module moore_overlap(input clk,reset,input x,output reg z);
+parameter A=3'b000;
+parameter B=3'b001;
+parameter C=3'b010;
+parameter D=3'b100;
+parameter E=3'b011;
+reg [2:0] state,next_state;
+always @(posedge clk or posedge reset)
+begin
+    if(reset)
+        state<=A;
+    else
+        state<=next_state;
+end
+always @(*)
+begin
+z=0;
+case(state)
+    A:next_state=x?B:A;
+    B:next_state=x?B:C;
+    C:next_state=x?B:D;
+    D:next_state=x?E:A;  
+    E:next_state=x?B:C; 
+default:next_state=A;
+endcase
+end
+always @(*)
+  begin
+    case(state)
+      E:z=1;
+      default:z=0;
+    endcase
+  end
+endmodule
+
+          
