@@ -1,0 +1,29 @@
+module testbench();
+reg clk,reset;
+reg x;
+wire z;
+moore_overlap uut(clk,reset,x,z);
+initial begin
+    clk=0;
+    forever #5 clk=~clk;
+end
+initial begin
+    $monitor("%0dns:clk=%b.reset=%b,x=%b,z=%b",$time,clk,reset,x,z);
+    reset=1;x=0;
+    #10 reset=0;
+    #10 x=1;
+    #10 x=0;
+    #10 x=0;
+    #10 x=1;
+    #10 x=0;
+    #10 x=0;
+    #10 x=1;
+    #10 x=0;
+    #10 x=0;
+    #10 x=1;
+    #10 x=0;
+    #20 $finish;
+end
+endmodule
+   
+    
