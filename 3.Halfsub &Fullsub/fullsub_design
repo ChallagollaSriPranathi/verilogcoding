@@ -13,3 +13,18 @@ module full_sub(
     and (w6, Bin, w5);
     or (Borrow, w3, w6);
 endmodule
+
+
+//In Data flow Modelling:
+module full_sub(input A, B, Bin,output Diff, Borrow);
+    assign Diff=A^B^Bin;
+    assign Borrow=(~A&B) | (Bin & (A^(~B)));
+endmodule
+//In Behavioral modelling:
+module full_sub (input A, B, Bin, output reg Diff, Borrow);
+    always @(A or B or Bin)
+    begin
+        Diff= A ^ B ^ Bin;
+        Borrow=(~A&B) | (Bin & (A^(~B)));
+    end
+endmodule
